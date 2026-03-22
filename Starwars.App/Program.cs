@@ -6,7 +6,16 @@ using Starwars.App.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
+var useIntegrationInMemory = builder.Configuration.GetValue<bool>("IntegrationTests:UseInMemory");
+if (useIntegrationInMemory)
+{
+    builder.Services.AddDbContext<ApplicationDbContext>(options =>
+        options.UseInMemoryDatabase($"IntegrationTests_{Guid.NewGuid():N}"));
+}
+else
+{
+    builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
+}
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options =>
@@ -27,7 +36,7 @@ using (var scope = app.Services.CreateScope())
     var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
     db.Database.EnsureCreated();
 
-    if (!db.Starships.Any())
+    if (!app.Configuration.GetValue<bool>("IntegrationTests:UseInMemory") && !db.Starships.Any())
     {
         var swapiService = scope.ServiceProvider.GetRequiredService<ISwapiService>();
         var starships = await swapiService.GetAllStarshipsAsync();
@@ -50,7 +59,11 @@ else
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+if (!app.Configuration.GetValue<bool>("IntegrationTests:UseInMemory"))
+{
+    app.UseHttpsRedirection();
+}
+
 app.UseStaticFiles();
 
 app.UseRouting();
@@ -64,3 +77,7 @@ app.MapControllerRoute(
 app.MapRazorPages();
 
 app.Run();
+
+public partial class Program
+{
+}
