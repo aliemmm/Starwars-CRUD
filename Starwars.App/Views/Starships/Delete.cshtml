@@ -1,0 +1,10 @@
+﻿@model Starwars.App.Models.DomainModels.StarshipDbSet
+
+<h2>Delete Starship</h2>
+<hr />
+<h3>Are you sure you want to delete @Model.Name?</h3>
+<form asp-action="Delete">
+    <input type="hidden" asp-for="Id" />
+    <input type="submit" value="Delete" class="btn btn-danger" />
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</form>

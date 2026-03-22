@@ -1,0 +1,131 @@
+@model Starwars.App.Models.ViewModels.StarshipViewModel
+@{ ViewData["Title"] = "Create Starship"; }
+
+<h2>Create Starship</h2>
+<hr />
+<div class="row">
+    <div class="col-12">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+            <div class="row row-cols-1 row-cols-md-3 g-2 g-md-3">
+                <div class="col">
+                    <div class="mb-2 mb-md-0">
+                        <label class="form-label mb-0" asp-for="Name"><span class="text-danger" aria-hidden="true">*</span> @Html.DisplayNameFor(m => m.Name)</label>
+                        <input asp-for="Name" class="form-control" autocomplete="off" />
+                        <span asp-validation-for="Name" class="text-danger small d-block"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="mb-2 mb-md-0">
+                        <label class="form-label mb-0" asp-for="Model"><span class="text-danger" aria-hidden="true">*</span> @Html.DisplayNameFor(m => m.Model)</label>
+                        <input asp-for="Model" class="form-control" autocomplete="off" />
+                        <span asp-validation-for="Model" class="text-danger small d-block"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="mb-2 mb-md-0">
+                        <label class="form-label mb-0" asp-for="Manufacturer"><span class="text-danger" aria-hidden="true">*</span> @Html.DisplayNameFor(m => m.Manufacturer)</label>
+                        <input asp-for="Manufacturer" class="form-control" autocomplete="off" />
+                        <span asp-validation-for="Manufacturer" class="text-danger small d-block"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="mb-2 mb-md-0">
+                        <label class="form-label mb-0" asp-for="CostInCredits"><span class="text-danger" aria-hidden="true">*</span> @Html.DisplayNameFor(m => m.CostInCredits)</label>
+                        <input asp-for="CostInCredits" class="form-control" autocomplete="off" />
+                        <span asp-validation-for="CostInCredits" class="text-danger small d-block"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="mb-2 mb-md-0">
+                        <label class="form-label mb-0" asp-for="Length"><span class="text-danger" aria-hidden="true">*</span> @Html.DisplayNameFor(m => m.Length)</label>
+                        <input asp-for="Length" class="form-control" autocomplete="off" />
+                        <span asp-validation-for="Length" class="text-danger small d-block"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="mb-2 mb-md-0">
+                        <label class="form-label mb-0" asp-for="MaxAtmospheringSpeed"><span class="text-danger" aria-hidden="true">*</span> @Html.DisplayNameFor(m => m.MaxAtmospheringSpeed)</label>
+                        <input asp-for="MaxAtmospheringSpeed" class="form-control" autocomplete="off" />
+                        <span asp-validation-for="MaxAtmospheringSpeed" class="text-danger small d-block"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="mb-2 mb-md-0">
+                        <label class="form-label mb-0" asp-for="Crew"><span class="text-danger" aria-hidden="true">*</span> @Html.DisplayNameFor(m => m.Crew)</label>
+                        <input asp-for="Crew" class="form-control" autocomplete="off" />
+                        <span asp-validation-for="Crew" class="text-danger small d-block"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="mb-2 mb-md-0">
+                        <label class="form-label mb-0" asp-for="Passengers"><span class="text-danger" aria-hidden="true">*</span> @Html.DisplayNameFor(m => m.Passengers)</label>
+                        <input asp-for="Passengers" class="form-control" autocomplete="off" />
+                        <span asp-validation-for="Passengers" class="text-danger small d-block"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="mb-2 mb-md-0">
+                        <label class="form-label mb-0" asp-for="CargoCapacity"><span class="text-danger" aria-hidden="true">*</span> @Html.DisplayNameFor(m => m.CargoCapacity)</label>
+                        <input asp-for="CargoCapacity" class="form-control" autocomplete="off" />
+                        <span asp-validation-for="CargoCapacity" class="text-danger small d-block"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="mb-2 mb-md-0">
+                        <label class="form-label mb-0" asp-for="Consumables"><span class="text-danger" aria-hidden="true">*</span> @Html.DisplayNameFor(m => m.Consumables)</label>
+                        <input asp-for="Consumables" class="form-control" autocomplete="off" />
+                        <span asp-validation-for="Consumables" class="text-danger small d-block"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="mb-2 mb-md-0">
+                        <label class="form-label mb-0" asp-for="HyperdriveRating"><span class="text-danger" aria-hidden="true">*</span> @Html.DisplayNameFor(m => m.HyperdriveRating)</label>
+                        <input asp-for="HyperdriveRating" class="form-control" autocomplete="off" />
+                        <span asp-validation-for="HyperdriveRating" class="text-danger small d-block"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="mb-2 mb-md-0">
+                        <label class="form-label mb-0" asp-for="MGLT"><span class="text-danger" aria-hidden="true">*</span> @Html.DisplayNameFor(m => m.MGLT)</label>
+                        <input asp-for="MGLT" class="form-control" autocomplete="off" />
+                        <span asp-validation-for="MGLT" class="text-danger small d-block"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="mb-2 mb-md-0">
+                        <label class="form-label mb-0" asp-for="StarshipClass"><span class="text-danger" aria-hidden="true">*</span> @Html.DisplayNameFor(m => m.StarshipClass)</label>
+                        <input asp-for="StarshipClass" class="form-control" autocomplete="off" />
+                        <span asp-validation-for="StarshipClass" class="text-danger small d-block"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row row-cols-1 row-cols-md-2 g-2 g-md-3 mt-1">
+                <div class="col">
+                    <label asp-for="PilotsCsv" class="form-label mb-0"></label>
+                    <textarea asp-for="PilotsCsv" class="form-control" rows="2" placeholder="Comma-separated pilot resource URLs"></textarea>
+                    <small class="form-text text-muted">Optional. Comma-separated.</small>
+                    <span asp-validation-for="PilotsCsv" class="text-danger small d-block"></span>
+                </div>
+                <div class="col">
+                    <label asp-for="FilmsCsv" class="form-label mb-0"></label>
+                    <textarea asp-for="FilmsCsv" class="form-control" rows="2" placeholder="Comma-separated film resource URLs"></textarea>
+                    <small class="form-text text-muted">Optional. Comma-separated.</small>
+                    <span asp-validation-for="FilmsCsv" class="text-danger small d-block"></span>
+                </div>
+            </div>
+
+            <div class="form-group mt-3">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
