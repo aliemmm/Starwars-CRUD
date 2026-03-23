@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Starwars.App.Data;
 using Starwars.App.Models.Mappers;
 using Starwars.App.Models.ViewModels;
+using Starwars.App.Services;
 
 namespace Starwars.App.Controllers;
 
@@ -50,6 +51,7 @@ public class StarshipsController : Controller
         if (id == null) return NotFound();
         var starship = await _context.Starships.FindAsync(id);
         if (starship == null) return NotFound();
+        ViewData.Add("Title", starship.Name);
         return View(starship.ToStarshipViewModel());
     }
 
@@ -77,6 +79,7 @@ public class StarshipsController : Controller
         if (id == null) return NotFound();
         var starship = await _context.Starships.FirstOrDefaultAsync(m => m.Id == id);
         if (starship == null) return NotFound();
+        ViewData.Add("Title", starship.Name);
         return View(starship);
     }
 
@@ -88,5 +91,28 @@ public class StarshipsController : Controller
         if (starship != null) _context.Starships.Remove(starship);
         await _context.SaveChangesAsync();
         return RedirectToAction(nameof(Index));
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Details(int? id, [FromServices] IStarshipAiService aiService, bool generateLore = false)
+    {
+        if (id == null) return NotFound();
+
+        var starship = await _context.Starships.FirstOrDefaultAsync(m => m.Id == id);
+        if (starship == null) return NotFound();
+
+        if (generateLore)
+        {
+            try
+            {
+                //ViewBag.AiLore = await aiService.GenerateStarshipLoreAsync(starship);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.AiLore = $"Error generating lore: {ex.Message}";
+            }
+        }
+        ViewData.Add("Title", starship.Name);
+        return View(starship.ToStarshipViewModel());
     }
 }

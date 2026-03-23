@@ -17,6 +17,8 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<ISwapiService, SwapiService>().AddHttpClient();
+// Add to Program.cs before builder.Build()
+builder.Services.AddScoped<IStarshipAiService, StarshipAiService>();
 builder.Services.AddRazorPages();
 var app = builder.Build();
 
